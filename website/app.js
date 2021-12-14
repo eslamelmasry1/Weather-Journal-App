@@ -31,7 +31,6 @@ function performAction(e) {
 //GET route
 /* Function to GET Web API Data*/
 const getTemp = async (baseUrl, zipValue, apiKey)=>{
-    
     const res = await fetch(`${baseUrl}${zipValue}${apiKey}`);
     try {
       // Transform into JSON
@@ -45,6 +44,7 @@ const getTemp = async (baseUrl, zipValue, apiKey)=>{
 
 //POST data
 /* Asynchronous Function to POST data */
+
 const postData = async (url = "", data = {}) => {
     const res = await fetch(url, {
         method: 'POST',
@@ -65,7 +65,7 @@ const postData = async (url = "", data = {}) => {
     }
 }
 
-
+//Asynchronous function to retrieve the app’s data to update the User Interface or the client side
 const updateUI = async () => {
     const req = await fetch('/all');
     try{
