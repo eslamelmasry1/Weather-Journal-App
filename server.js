@@ -1,4 +1,4 @@
-// Setup empty JS object to act as endpoint for all routes
+// Setup empty JS array to act as endpoint for all routes
 const projectData = [];
 
 // Require Express to run server and routes
@@ -34,7 +34,7 @@ app.get('/all', function(req, res) {
 });
 
 //The POST route Setup
-//Create post() with a URL path and a callback function.
+//Create post() with a URL path and a callback function to fetch the data from the app endpoint.
 app.post('/postData', postData)
 
 //Call back function in which we add the data received from req.body
@@ -45,7 +45,7 @@ function postData(req, res) {
         date: req.body.date,
         content: req.body.content
     };
-    //Push allData object to projectData object as endpoint.
+    //Push allData object to projectData array as endpoint.
     projectData.push(weatherData);
     res.send(projectData);
     console.log(projectData);
