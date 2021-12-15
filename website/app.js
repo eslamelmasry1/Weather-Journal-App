@@ -20,11 +20,15 @@ generateBtn.addEventListener('click', performAction);
 function performAction(e) {
     let zipValue = document.querySelector('#zip').value;
     getTemp(baseUrl, zipValue, apiKey).then(function(data) {
+        //Conditional to pop up an alert in case of an error
+        if(data.cod != 200) {
+            return alert(data.message)
+        }
         postData('/postData', {date:newDate, temp:data.main.temp, content:feelings.value});
     })
-    .then(()=>
+    .then(() =>{
         updateUI()
-    )
+    })
 };
 
 
