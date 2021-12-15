@@ -1,6 +1,6 @@
 /* Global Variables */
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip='
-const apiKey = '&appid=b7f34c3f7abc275d330d65cbed795d76'
+const apiKey = '&appid=b7f34c3f7abc275d330d65cbed795d76&units=metric'
 //Feelings input variable
 let feelings = document.querySelector('#feelings');
 //Button variable
@@ -11,7 +11,7 @@ const temp = document.getElementById('temp');
 const content = document.getElementById('content');
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 
 //Event listener to add function to existing HTML DOM element
@@ -22,7 +22,7 @@ function performAction(e) {
     getTemp(baseUrl, zipValue, apiKey).then(function(data) {
         postData('/postData', {date:newDate, temp:data.main.temp, content:feelings.value});
     })
-    .then(
+    .then(()=>
         updateUI()
     )
 };
@@ -70,9 +70,9 @@ const updateUI = async () => {
     const req = await fetch('/all');
     try{
       const allData = await req.json();
-      date.innerHTML = `Date: ${allData[0].date}`;
-      temp.innerHTML = `Temperature: ${allData[0].temp}`;
-      content.innerHTML = `I am feeling: ${allData[0].content}`;
+      date.innerHTML = `Date: ${allData.date}`;
+      temp.innerHTML = `Temperature: ${allData.temp}`;
+      content.innerHTML = `I am feeling: ${allData.content}`;
     }catch (error){
       console.log("error", error);
     }
