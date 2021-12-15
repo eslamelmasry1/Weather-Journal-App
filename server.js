@@ -1,8 +1,8 @@
 // Setup empty JS array to act as endpoint for all routes
-const projectData = [];
+const projectData = {};
 
 // Require Express to run server and routes
-const express = require('express')
+const express = require('express');
 // Start up an instance of app
 const app = express();
 //Including body-parser
@@ -46,7 +46,7 @@ function postData(req, res) {
         content: req.body.content
     };
     //Push allData object to projectData array as endpoint.
-    projectData.push(weatherData);
+    projectData = weatherData;
     res.send(projectData);
     console.log(projectData);
 }
